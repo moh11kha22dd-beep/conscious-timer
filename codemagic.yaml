@@ -9,7 +9,7 @@ workflows:
       - name: Extract project
         script: |
           rm -rf conscious_timer
-          unzip -q conscious_timer_github_ready_fixed.zip
+          unzip -q conscious_timer_github_ready_fixed_v2.zip
           chmod +x conscious_timer/scripts/*.sh
       - name: Prepare Android project
         script: |
