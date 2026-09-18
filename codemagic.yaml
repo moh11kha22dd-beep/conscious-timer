@@ -1,0 +1,27 @@
+workflows:
+  android-release:
+    name: Android Release APK
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+    scripts:
+      - name: Extract project
+        script: |
+          rm -rf conscious_timer
+          unzip -q conscious_timer_github_ready.zip
+          chmod +x conscious_timer/scripts/*.sh
+      - name: Prepare Android project
+        script: |
+          cd conscious_timer
+          bash scripts/bootstrap_android.sh
+      - name: Get Flutter packages
+        script: |
+          cd conscious_timer
+          flutter pub get
+      - name: Build release APK
+        script: |
+          cd conscious_timer
+          flutter build apk --release
+    artifacts:
+      - conscious_timer/build/app/outputs/flutter-apk/*.apk
